@@ -21,5 +21,15 @@ internal class Program
 
         double length2 = line2.CalculateLength();
         Console.WriteLine($"Length of the Line 2 is = {length2}");
+
+
+        int comparisonResult = line1.CompareTo(line2);
+
+        if (comparisonResult < 0)
+            Console.WriteLine("Line 1 is shorter than Line 2.");
+        else if (comparisonResult > 0)
+            Console.WriteLine("Line 1 is longer than Line 2.");
+        else
+            Console.WriteLine("Line 1 is equal in length to Line 2.");
     }
 }

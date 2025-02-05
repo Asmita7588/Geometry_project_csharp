@@ -32,7 +32,7 @@ namespace geometryProject
             return HashCode.Combine(x, y);
         }
     }
-    class Line
+    class Line : IComparable<Line>
     {
         public PointProgarm start { get; }
         public PointProgarm end { get; }
@@ -63,6 +63,17 @@ namespace geometryProject
 
         }
 
+        public int CompareTo(Line other)
+        {
+            if (other == null) return 1;
+
+            double thisLine = this.CalculateLength();
+            double otherLine = other.CalculateLength();
+            if (thisLine < otherLine) return -1;
+            else if (thisLine > otherLine) return 1;
+            else return 0;
+
+        }
     }
 
 }

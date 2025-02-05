@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +18,19 @@ namespace geometryProject
             this.x = x;
             this.y = y;
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+                return false;
+
+            PointProgarm other = (PointProgarm)obj;
+            return x == other.x && y == other.y;
+        }
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(x, y);
+        }
     }
     class Line
     {
@@ -27,6 +42,19 @@ namespace geometryProject
             this.end = end;
         }
 
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+                return false;
+
+            Line other = (Line)obj;
+            return (start.Equals(other.start) && end.Equals(other.end)) ||
+                   (start.Equals(other.end) && end.Equals(other.start));
+        }
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(start, end);
+        }
 
         public double CalculateLength(){
             double dx = start.x - end.x;
